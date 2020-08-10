@@ -10,7 +10,8 @@ var users = express.Router();
 var { User } = require('../models/User');
 //protect route with cors
 users.use(cors())
-process.env.SECRET_KEY = 'secret'
+//import config file which is holding the secret key
+var config = require('../config')
 
 /*Set route for registering new users*/ 
 users.post('/register', (req, res) => {
@@ -74,7 +75,7 @@ users.post('/login', (req, res) => {
             role: user.role,
           }
           //sign payload with jwt to get token
-          let token = jwt.sign(payload, process.env.SECRET_KEY, {
+          let token = jwt.sign(payload, config.secret, {
             expiresIn: 1440
           })
           //after successful login display token and payload data

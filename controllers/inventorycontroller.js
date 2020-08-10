@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 
 //import inventory model
 var { Inventory } = require('../models/inventory');
-process.env.SECRET_KEY = 'secret'
+//import config file which is holding the secret key
+var config = require('../config')
 
 
 /*route for viewing all inventories, it is protected; only an admin and sales person can access it*/
@@ -13,7 +14,7 @@ router.get('/', function (req, res) {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'Unauthorized user!, you need to login to access this route' });
 
-    jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
+    jwt.verify(token, config.secret, function (err, decoded) {
         if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
         else if (!err && decoded.role === 'admin' || !err && decoded.role === 'salesPerson') {
             Inventory.find((err, docs) => {
@@ -30,7 +31,7 @@ router.get('/', function (req, res) {
 router.post('/', (req, res) => {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'Unauthorized user!, you need to login to access this route' });
-    jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
+    jwt.verify(token, config.secret, function (err, decoded) {
         if (!err && decoded.role === 'admin') {
         const today = new Date()
         var invent = new Inventory({
@@ -52,7 +53,7 @@ router.post('/', (req, res) => {
 router.put('/:id', function (req, res, next) {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'Unauthorized user!, you need to login to access this route' });
-    jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
+    jwt.verify(token, config.secret, function (err, decoded) {
         if (!err && decoded.role === 'salesPerson') {
             Inventory.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
                 if (err) return next(err);
@@ -69,7 +70,7 @@ router.get('/:id', function (req, res) {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'Unauthorized user!, you need to login to access this route' });
 
-    jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
+    jwt.verify(token, config.secret, function (err, decoded) {
         if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
         else if (!err && decoded.role === 'admin' || !err && decoded.role === 'salesPerson') {
             Inventory.findById((err, docs) => {
