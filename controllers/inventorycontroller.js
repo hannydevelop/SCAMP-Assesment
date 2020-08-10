@@ -1,11 +1,14 @@
+//import all necessary dependencies
 const express = require('express');
 var router = express.Router();
-var { Inventory } = require('../models/inventory');
 const jwt = require('jsonwebtoken');
+
+//import inventory model
+var { Inventory } = require('../models/inventory');
 process.env.SECRET_KEY = 'secret'
 
 
-
+/*route for viewing all inventories, it is protected; only an admin and sales person can access it*/
 router.get('/', function (req, res) {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'Unauthorized user!, you need to login to access this route' });
@@ -23,6 +26,7 @@ router.get('/', function (req, res) {
 });
 
 
+/*route for adding inventory, it is protected; only an admin can access it*/
 router.post('/', (req, res) => {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'Unauthorized user!, you need to login to access this route' });
@@ -44,6 +48,7 @@ router.post('/', (req, res) => {
     });
 });
 
+/*route for ordering (editing) inventory, it is protected; only a sales person can access it*/
 router.put('/:id', function (req, res, next) {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'Unauthorized user!, you need to login to access this route' });
@@ -59,6 +64,7 @@ router.put('/:id', function (req, res, next) {
     
 });
 
+/*route for viewing a single inventory, it is protected; only an admin and sales person can access it*/
 router.get('/:id', function (req, res) {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'Unauthorized user!, you need to login to access this route' });
@@ -75,4 +81,5 @@ router.get('/:id', function (req, res) {
     });
 });
 
+//export inventory route controller
 module.exports = router;

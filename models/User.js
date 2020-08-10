@@ -1,3 +1,4 @@
+/*Using an ORM (mongoose) to interact with a simple user database model*/
 const mongoose = require('mongoose');
 
 var User = mongoose.model('User', {
@@ -10,4 +11,5 @@ var User = mongoose.model('User', {
     role: { type: String },
 });
 
+//export dtabase model(user)
 module.exports = { User };
