@@ -7,6 +7,7 @@ var User = mongoose.model('User', {
     password: { type: String, required: true },
     date: { type: Date, default: Date.now },
     username: { type: String },
+    role: { type: String },
 });
 
 module.exports = { User };
