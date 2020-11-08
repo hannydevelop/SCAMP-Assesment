@@ -33,22 +33,22 @@ Just go to [official Node.js website](https://nodejs.org/) and download the inst
 - #### Other Operating Systems
 You can find more information about the installation on the [official Node.js website](https://nodejs.org/) and the [official NPM website](https://npmjs.org/).
 
-```
-If the installation was successful, you should be able to run the following command.
+```bash
+#If the installation was successful, you should be able to run the following command.
 
 node --version
 ```
     
 You should get v8.11.3 or the version you downloaded, else you don't have node Js installed in your working environment.
 
- ```
+ ```bash
  npm--version
  ```
 You should get v8.11.3 6.1.0 or the version you downloaded
 
 If you need to update `npm`, you can do it using `npm`! Cool right ? 
 
-```
+```bash
 npm install npm - g
 ```
 
@@ -58,7 +58,7 @@ After running the following command, just open the command line again and be hap
 
 To clone repository run the command below;
 
-```
+```bash
 git clone https://github.com/hannydevelop/SCAMP-Assesment 
 ```
 
@@ -66,7 +66,7 @@ git clone https://github.com/hannydevelop/SCAMP-Assesment
 
 To install dependencies run the command below;
 
-```
+```bash
 npm install
 ```
 
@@ -76,7 +76,7 @@ Navigate to the scamp folder with this command ```cd SCAMP - Assesment```.
 
 Use the command below to run the project in your local server;
 
-```
+```javascript
 node index.js
 ```
 download postman to be able to test the backend application[official Postman website](https://www.postman.com/downloads/)
