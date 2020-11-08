@@ -46,7 +46,7 @@ You should get v8.11.3 or the version you downloaded, else you don't have node J
  ```
 You should get v8.11.3 6.1.0 or the version you downloaded
 
-If you need to update`npm`, you can do it using`npm`! Cool right ? 
+If you need to update `npm`, you can do it using `npm`! Cool right ? 
 
 ```
 npm install npm - g
@@ -77,7 +77,7 @@ Navigate to the scamp folder with this command ```cd SCAMP - Assesment```.
 Use the command below to run the project in your local server;
 
 ```
-Node index.js
+node index.js
 ```
 download postman to be able to test the backend application[official Postman website](https://www.postman.com/downloads/)
     use this link to register a new user on postman http://localhost:3000/users/register
